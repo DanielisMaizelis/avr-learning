@@ -1,0 +1,229 @@
+
+ISR.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000154  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000100  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  00000154  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000184  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000040  00000000  00000000  000001c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000009d8  00000000  00000000  00000204  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000008bf  00000000  00000000  00000bdc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000330  00000000  00000000  0000149b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000006c  00000000  00000000  000017cc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000047e  00000000  00000000  00001838  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000e2  00000000  00000000  00001cb6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000030  00000000  00000000  00001d98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
+   2:	00 00       	nop
+   4:	53 c0       	rjmp	.+166    	; 0xac <__bad_interrupt>
+   6:	00 00       	nop
+   8:	51 c0       	rjmp	.+162    	; 0xac <__bad_interrupt>
+   a:	00 00       	nop
+   c:	4f c0       	rjmp	.+158    	; 0xac <__bad_interrupt>
+   e:	00 00       	nop
+  10:	4d c0       	rjmp	.+154    	; 0xac <__bad_interrupt>
+  12:	00 00       	nop
+  14:	4b c0       	rjmp	.+150    	; 0xac <__bad_interrupt>
+  16:	00 00       	nop
+  18:	49 c0       	rjmp	.+146    	; 0xac <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	47 c0       	rjmp	.+142    	; 0xac <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	45 c0       	rjmp	.+138    	; 0xac <__bad_interrupt>
+  22:	00 00       	nop
+  24:	43 c0       	rjmp	.+134    	; 0xac <__bad_interrupt>
+  26:	00 00       	nop
+  28:	41 c0       	rjmp	.+130    	; 0xac <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	3f c0       	rjmp	.+126    	; 0xac <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	3d c0       	rjmp	.+122    	; 0xac <__bad_interrupt>
+  32:	00 00       	nop
+  34:	3b c0       	rjmp	.+118    	; 0xac <__bad_interrupt>
+  36:	00 00       	nop
+  38:	39 c0       	rjmp	.+114    	; 0xac <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	37 c0       	rjmp	.+110    	; 0xac <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	35 c0       	rjmp	.+106    	; 0xac <__bad_interrupt>
+  42:	00 00       	nop
+  44:	33 c0       	rjmp	.+102    	; 0xac <__bad_interrupt>
+  46:	00 00       	nop
+  48:	31 c0       	rjmp	.+98     	; 0xac <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	2f c0       	rjmp	.+94     	; 0xac <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	2d c0       	rjmp	.+90     	; 0xac <__bad_interrupt>
+  52:	00 00       	nop
+  54:	2b c0       	rjmp	.+86     	; 0xac <__bad_interrupt>
+  56:	00 00       	nop
+  58:	29 c0       	rjmp	.+82     	; 0xac <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	27 c0       	rjmp	.+78     	; 0xac <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	25 c0       	rjmp	.+74     	; 0xac <__bad_interrupt>
+  62:	00 00       	nop
+  64:	23 c0       	rjmp	.+70     	; 0xac <__bad_interrupt>
+  66:	00 00       	nop
+  68:	21 c0       	rjmp	.+66     	; 0xac <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	1f c0       	rjmp	.+62     	; 0xac <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	1d c0       	rjmp	.+58     	; 0xac <__bad_interrupt>
+  72:	00 00       	nop
+  74:	1b c0       	rjmp	.+54     	; 0xac <__bad_interrupt>
+  76:	00 00       	nop
+  78:	19 c0       	rjmp	.+50     	; 0xac <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	17 c0       	rjmp	.+46     	; 0xac <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	15 c0       	rjmp	.+42     	; 0xac <__bad_interrupt>
+  82:	00 00       	nop
+  84:	13 c0       	rjmp	.+38     	; 0xac <__bad_interrupt>
+  86:	00 00       	nop
+  88:	11 c0       	rjmp	.+34     	; 0xac <__bad_interrupt>
+	...
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e4       	ldi	r29, 0x40	; 64
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_clear_bss>:
+  98:	21 e0       	ldi	r18, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
+
+000000a0 <.do_clear_bss_loop>:
+  a0:	1d 92       	st	X+, r1
+
+000000a2 <.do_clear_bss_start>:
+  a2:	a0 30       	cpi	r26, 0x00	; 0
+  a4:	b2 07       	cpc	r27, r18
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
+  a8:	16 d0       	rcall	.+44     	; 0xd6 <main>
+  aa:	28 c0       	rjmp	.+80     	; 0xfc <_exit>
+
+000000ac <__bad_interrupt>:
+  ac:	a9 cf       	rjmp	.-174    	; 0x0 <__vectors>
+
+000000ae <setSSLow>:
+	DDRB = (1<<PINB4)|(1<<PINB5)|(1<<PINB7);
+	setSSHigh();
+
+	// Enable SPI, Master, set clock rate fck/128
+	// Sample on rising edge, output on falling
+	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1)|(0<<CPHA)|(0<<CPOL);
+  ae:	85 b1       	in	r24, 0x05	; 5
+  b0:	8f 7e       	andi	r24, 0xEF	; 239
+  b2:	85 b9       	out	0x05, r24	; 5
+  b4:	08 95       	ret
+
+000000b6 <setSSHigh>:
+  b6:	85 b1       	in	r24, 0x05	; 5
+  b8:	80 61       	ori	r24, 0x10	; 16
+  ba:	85 b9       	out	0x05, r24	; 5
+  bc:	08 95       	ret
+
+000000be <SPI_MasterTransmit>:
+}
+
+char SPI_MasterTransmit(char cData)
+{
+  be:	cf 93       	push	r28
+  c0:	c8 2f       	mov	r28, r24
+	setSSHigh();
+  c2:	f9 df       	rcall	.-14     	; 0xb6 <setSSHigh>
+	// Start transmission
+	SPDR = cData;
+  c4:	ce bd       	out	0x2e, r28	; 46
+	// Wait for transmission complete
+	while(!(SPSR & (1<<SPIF))) ;
+  c6:	0d b4       	in	r0, 0x2d	; 45
+  c8:	07 fe       	sbrs	r0, 7
+  ca:	fd cf       	rjmp	.-6      	; 0xc6 <SPI_MasterTransmit+0x8>
+
+	char receivedData = SPDR;
+	setSSLow();
+  cc:	ce b5       	in	r28, 0x2e	; 46
+  ce:	ef df       	rcall	.-34     	; 0xae <setSSLow>
+	return receivedData;
+}
+  d0:	8c 2f       	mov	r24, r28
+  d2:	cf 91       	pop	r28
+  d4:	08 95       	ret
+
+000000d6 <main>:
+{
+	//SPI_MasterInit();
+
+	// Send 'Read JEDEC ID' command
+	
+	char status = SPI_MasterTransmit(0x9f);
+  d6:	8f e9       	ldi	r24, 0x9F	; 159
+  d8:	f2 df       	rcall	.-28     	; 0xbe <SPI_MasterTransmit>
+
+	// Get data
+	while(1)
+	{
+		setSSLow();
+  da:	e9 df       	rcall	.-46     	; 0xae <setSSLow>
+  dc:	c1 e0       	ldi	r28, 0x01	; 1
+		for(int i=1; i<=0xF; i++)
+  de:	d0 e0       	ldi	r29, 0x00	; 0
+  e0:	09 c0       	rjmp	.+18     	; 0xf4 <main+0x1e>
+		{
+			char data = SPI_MasterTransmit(i);
+  e2:	8c 2f       	mov	r24, r28
+  e4:	ec df       	rcall	.-40     	; 0xbe <SPI_MasterTransmit>
+  e6:	8f e8       	ldi	r24, 0x8F	; 143
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e8:	91 e0       	ldi	r25, 0x01	; 1
+  ea:	01 97       	sbiw	r24, 0x01	; 1
+  ec:	f1 f7       	brne	.-4      	; 0xea <main+0x14>
+  ee:	00 c0       	rjmp	.+0      	; 0xf0 <main+0x1a>
+  f0:	00 00       	nop
+  f2:	21 96       	adiw	r28, 0x01	; 1
+
+	// Get data
+	while(1)
+	{
+		setSSLow();
+		for(int i=1; i<=0xF; i++)
+  f4:	c0 31       	cpi	r28, 0x10	; 16
+  f6:	d1 05       	cpc	r29, r1
+  f8:	a4 f3       	brlt	.-24     	; 0xe2 <main+0xc>
+  fa:	ef cf       	rjmp	.-34     	; 0xda <main+0x4>
+
+000000fc <_exit>:
+  fc:	f8 94       	cli
+
+000000fe <__stop_program>:
+  fe:	ff cf       	rjmp	.-2      	; 0xfe <__stop_program>
