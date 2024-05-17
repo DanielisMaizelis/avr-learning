@@ -1,6 +1,11 @@
 #include "main.h"
 volatile uint16_t result;
 	
+	
+void lcdInit();
+
+
+
 ISR(ADC_vect)
 {
 	result = ADC;
@@ -56,6 +61,7 @@ void getVoltage()
 	strcat(msg," V ");
 	strcat(msg, msg3);
 	strcat(msg, "%");
+	
 	displayVoltageLcd(msg);
 	_delay_ms(100);						 // Intentional Delay
 	clearScreen();
@@ -71,11 +77,17 @@ int main(void)
 
 	// Setup usart
 	//USART_Init(MYUBRR);
-	adcSetup();
+	lcdInit();
+	//adcSetup();
 	sei();
 	
+		
     while (1) 
     {
+		//PORTB |= (1<<PORTB5);
+		//PORTB |= (1<<PORTB2);
+	
+	
 		float resultf     = (float)(result/1024.0)*100;
 		uint8_t resultInt = (uint8_t)resultf;
 		getVoltage();

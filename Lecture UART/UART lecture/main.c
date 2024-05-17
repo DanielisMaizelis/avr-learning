@@ -11,10 +11,9 @@
 #define LED_8				   0
 
 
-uint8_t  counterTimer0 = 0;
-uint8_t	 tim0Flag	   = 0;
+uint8_t       counterTimer0 = 0;
+uint8_t		  tim0Flag	    = 0;
 
-uint8_t flag= 0;
 unsigned char buff;
 
 void USART_Transmit(unsigned char data) // Sending 5 to 8 bits
@@ -36,15 +35,15 @@ unsigned char USART_Receive(void)
 
 ISR(USART_RX_vect)
 {   
-	//PORTB  |= (1<<5);
 	buff = USART_Receive();
 	if(buff == '1')
-		flag = 1;
+		PORTB |= (1 << PORTB5);
 	
 	else if(buff == '0')
-		flag = 0;
+		PORTB &= ~(1 << PORTB5);
+		
 }
-/*
+
 ISR(TIMER0_OVF_vect) 
 { 
 	counterTimer0++;
@@ -63,9 +62,7 @@ ISR(TIMER0_OVF_vect)
 		TCNT0   = 0;	
 		USART_Transmit('0');
 	}
-}*/
-
-
+}
 
 
 void USART_Init(unsigned int ubrr)
@@ -78,66 +75,39 @@ void USART_Init(unsigned int ubrr)
 	UCSR0B = (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
 	/* Set frame format: 8data, 2stop bit */
 	UCSR0C = (1<<USBS0)|(3<<UCSZ00)|(0<<UMSEL00);
-	//UCSR0C = (1<<UCSZ01)|(1<<UCSZ00);
-	//UCSR0C = (1<<UCSZ00)|(1<<UCSZ01)(0<<UMSEL00);
+}
+
+void tim0Init()
+{	
+	// Timer0 no pre-scaler
+	TCNT0   = 0;
+	TCCR0B |= (1<<CS02)|(1<<CS00);   // Sets the pre-scaler 1024
+	TIMSK0 |= (1<<TOIE0);			 // Enables overflow		
 }
 
 
 
-
+void task1Polling()
+{
+	/* Get and return received data from buffer */
+	if(USART_Receive() == '0')
+		PORTB  &= ~(1<<PORTB5); // Turn off
+		 
+	else if(USART_Receive() == '1')
+		PORTB  |= (1<<PORTB5); // Turn on
+}
 
 int main(void)
 {
-	DDRB   |= 0b11111111;
+	DDRB   |= (1<< PORTB5);
 	USART_Init(MYUBRR);
-	
-	/*
-	// Timer0 no pre-scaler
-	TCNT0   = 0;
-	TCCR0B |= (1<<CS02)|(1<<CS00);   // Sets the pre-scaler
-	TIMSK0 |= (1<<TOIE0);			 // Enables overflow
-	*/
-	sei();
-
-			
-	//USART_Transmit('A');
+	//tim0Init();
+	sei();		
 	while(1)
-	{
-		 if(flag)
-			PORTB  |= (1<<5);
-		 else
-			PORTB  &= 0x00;
-		
-		/*
-		if(tim0Flag)
-			PORTB  |= (1<<2);
-		
-		else
-			PORTB &= ~(1<<2);
-			*/
-		
-		
-		
-		 /* Get and return received data from buffer */
-		  
-		  
-		
-		//else if(USART_Receive() == '0')
-			//PORTB  &= 0b00000000; // Turn off
-		
-		/*
-		if(tim0Flag)
-		{
-			PORTB  &= 0x00; 
-			PORTB  |= (1<<LED_10);
-		}
-		else
-		{
-			PORTB  &= 0x00;
-			PORTB  |=  (1<<LED_8);
-			//USART_Transmit('b');
-		}*/
+	{	
+		//task1Polling();
 	}
 	return 0;
 }
 
+	
