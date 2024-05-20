@@ -4,7 +4,7 @@
 // Global Variables
 // Make a struct:
 volatile uint16_t gAdcValueCh[3];
-const uint8_t gAdcCh[3]	  = {CH0_REGISTER,CH1_REGISTER,CH2_REGISTER};
+const    uint8_t  gAdcCh[3]	  = {CH0_REGISTER,CH1_REGISTER,CH2_REGISTER};
 
 uint8_t gAdcChCounter = 0;
 uint8_t gBtnFlag	  = BUTTON_NOT_PRESSED;	 // btn flags for debounce
@@ -134,10 +134,10 @@ int main(void)
 	PORTB  &= ~(1<<PORTB5);
 				
 	//USART_Init(MYUBRR);
-	lcd_init();
+	lcd_init();				// Lcd setup
 	setupTim0Irq();			// Timer 0 for button debounce
-	btnSetupIrq();
-	adcInit();
+	btnSetupIrq();			// External interrupt setup
+	adcInit();				// Adc setup
 	sei();
     while (1) 
     {
