@@ -1,8 +1,14 @@
 #include "include/main.h"
 
+//****************************************************************************
+// Function Prototypes
+void displayAllData(uint8_t, uint8_t);
+void float_to_string(float, char*, int);
+//****************************************************************************
 
+
+//****************************************************************************
 // Global Variables
-// Make a struct:
 volatile uint16_t gAdcValueCh[3];
 const    uint8_t  gAdcCh[3]	  = {CH0_REGISTER,CH1_REGISTER,CH2_REGISTER};
 
@@ -10,8 +16,12 @@ uint8_t gAdcChCounter = 0;
 uint8_t gBtnFlag	  = BUTTON_NOT_PRESSED;	 // btn flags for debounce
 uint8_t gOverflowTim0 = 0;					 // Overflow gAdcChCounter for timer 0
 uint8_t gPageCountLcd = LCD_PAGE_1;			 // Page gAdcChCounter for a
+//****************************************************************************
 
 
+
+//****************************************************************************
+// ISRs
 ISR(BUTTON_INT0_vect) // Button Interrupt
 {
 	if(gBtnFlag == BUTTON_NOT_PRESSED)
@@ -34,6 +44,45 @@ ISR(DEBOUNCE_TIMER0_OVF_vect) // Debounce Timer 0 Interrupt
 		gBtnFlag	  = BUTTON_NOT_PRESSED;		//
 		gOverflowTim0 = 0;
 	}
+}
+
+
+
+ISR(ADC_vect)
+{
+	displayAllData(gPageCountLcd, DISPLAY_LCD);
+	if (gPageCountLcd == LCD_PAGE_LIMIT)
+	gPageCountLcd = LCD_PAGE_1;
+	   
+	gAdcValueCh[gAdcChCounter] = ADC; // Read the ADC value
+	gAdcChCounter++;
+	if (gAdcChCounter == 3)
+	gAdcChCounter = 0;
+	   
+	ADMUX = gAdcCh[gAdcChCounter]; // Select the next channel
+	ADCSRA |= (1 << ADSC); // Start the next conversion
+}
+//****************************************************************************
+
+
+int main(void)
+{
+	// Add leds and second row and normalisation
+	DDRB   |= (1<<PORTB5);
+	PORTB  &= ~(1<<PORTB5);
+	
+	//USART_Init(MYUBRR);
+	lcd_init();				// Lcd setup
+	setupTim0Irq();			// Timer 0 for button debounce
+	btnSetupIrq();			// External interrupt setup
+	adcInit();				// Adc setup
+	sei();
+    while (1) 
+    {
+
+	
+    }
+	return 0;
 }
 
 void float_to_string(float value, char* buffer, int precision) {
@@ -108,42 +157,3 @@ void displayAllData(uint8_t pageLcd, uint8_t bType)
 		usartTransmitString("\n");
 	}
 }
-
-
-
-ISR(ADC_vect)
-{
-	displayAllData(gPageCountLcd, DISPLAY_LCD);
-	if (gPageCountLcd == LCD_PAGE_LIMIT)
-	gPageCountLcd = LCD_PAGE_1;
-	   
-	gAdcValueCh[gAdcChCounter] = ADC; // Read the ADC value
-	gAdcChCounter++;
-	if (gAdcChCounter == 3)
-	gAdcChCounter = 0;
-	   
-	ADMUX = gAdcCh[gAdcChCounter]; // Select the next channel
-	ADCSRA |= (1 << ADSC); // Start the next conversion
-}
-
-
-
-int main(void)
-{
-	DDRB   |= (1<<PORTB5);
-	PORTB  &= ~(1<<PORTB5);
-				
-	//USART_Init(MYUBRR);
-	lcd_init();				// Lcd setup
-	setupTim0Irq();			// Timer 0 for button debounce
-	btnSetupIrq();			// External interrupt setup
-	adcInit();				// Adc setup
-	sei();
-    while (1) 
-    {
-
-	
-    }
-	return 0;
-}
-

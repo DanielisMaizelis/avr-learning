@@ -1,9 +1,12 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+//****************************************************************************
+//Defines
+
 // Clock settings
-#define F_CPU 16000000UL
-#define BAUD 9600
+#define F_CPU		16000000UL
+#define BAUD		9600
 #define MYUBRR		F_CPU/16/BAUD-1   // Calculated Baud rate register
 
 // Redefined Interrupt service routine names
@@ -32,7 +35,7 @@
 #define CH0_REGISTER (1 << REFS0)
 #define CH1_REGISTER (1 << REFS0)|(1 << MUX0)
 #define CH2_REGISTER (1 << REFS0)|(1 << MUX1)
-
+//****************************************************************************
 // Includes
 #include "lcd.h"
 #include <avr/io.h>
@@ -40,19 +43,22 @@
 #include <string.h>
 #include <stdio.h>
 #include <util/delay.h>
+//****************************************************************************
 
+
+//****************************************************************************
 // Function Definitions
 void setupTim0Irq(void);
-void displayPage(uint8_t*headLine, uint8_t*value, uint8_t*type);
+void displayPage(uint8_t*, uint8_t*, uint8_t*);
 void btnSetupIrq(void);
-void setCursor(uint8_t row, uint8_t col);
+void setCursor(uint8_t, uint8_t);
 void clearScreen();
 void adcInit();
-void displayVoltageLcd1(char * word);
-void command(char cmd); // RS = 0 (Command), R/W = 0 (Write), Enable is 1
-void setData(char data);
-void USART_Init(unsigned int ubrr);
-void USART_Transmit(unsigned char data); // Sending 5 to 8 bits
-void usartTransmitString(char *str);
-
+void displayVoltageLcd1(char*);
+void command(char); // RS = 0 (Command), R/W = 0 (Write), Enable is 1
+void setData(char);
+void USART_Init(unsigned int);
+void USART_Transmit(unsigned char); // Sending 5 to 8 bits
+void usartTransmitString(char *);
+//****************************************************************************
 #endif /* MAIN_H_ */
